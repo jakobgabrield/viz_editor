@@ -7,7 +7,7 @@ const { generateFile } = require('./functions/generateFile');
 const { executeProgram } = require('./functions/execute');
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 const PORT = process.env.PORT || 5001;
