@@ -16,7 +16,7 @@ const App = () => {
 
   return (
     <div className="page">
-      <h3 className="title">Viz Editor</h3>
+      <h3 className="title">Viz Online</h3>
         <div className="container">
           <textarea className="textArea"
             rows="20"
