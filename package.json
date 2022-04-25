@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "apt install opam && opam install dune && node server.js",
+    "start": "apt update && apt install opam && opam install dune && node server.js",
     "heroku_postbuild": "cd client && npm install && npm run build"
   },
   "author": "",
