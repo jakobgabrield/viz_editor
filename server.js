@@ -28,9 +28,9 @@ app.post('/run', async (req, res) => {
     try {
         const result = await executeProgram(filePath, args);
         try {
-            fs.unlinkSync(filePath)
+            fs.unlinkSync(filePath);
         } catch(err) {
-            console.log(err)
+            console.log(err);
         }
         res.json(result);
     } 
