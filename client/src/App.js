@@ -7,16 +7,28 @@ const App = () => {
   const codeAreaRef = useRef();
   const [code, setCode] = useState("");
   const [result, setResult] = useState("");
+  const options = [{label: "AST", value: "-a"}, {label: "SAST", value: "-s"}, {label: "LLVM IR", value: "-l"}, {label: "Tokens", value: "-ts"}];
+  const [selectedOption, setSelectedOption] = useState(options[0].value);
   
   const run = async () => {
-    // const res = await axios.post("http://localhost:5001/run", {content: code, language: "python"});
-    const res = await axios.post("/run", {content: code, language: "python"});
+    const res = await axios.post("http://localhost:5001/run", {content: code, language: "viz", args: selectedOption});
+    // const res = await axios.post("/run", {content: code, language: "viz"});
     setResult(res.data);
   }
 
   return (
     <div className="page">
       <h3 className="title">Viz Online</h3>
+      <div style={{ display: 'flex', height: '30px', justifyContent: 'center', alignItems: 'center', gap: '10px'}}>
+        <h4>Result Format:</h4>
+        <select
+          value={selectedOption}
+          onChange={e => setSelectedOption(e.target.value)}>
+            {options.map(o => {
+              return <option key={o.value} value={o.value}>{o.label}</option>
+            })}
+        </select>
+      </div>
         <div className="container">
           <textarea className="textArea"
             rows="20"

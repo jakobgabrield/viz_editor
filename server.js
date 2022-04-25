@@ -23,24 +23,25 @@ app.get('/', (req, res) => {
 });
 
 app.post('/run', async (req, res) => {
-    const { content, language } = req.body;
+    const { content, language, args } = req.body;
     const filePath = await generateFile(content, language);
     try {
-        const result = await executeProgram(filePath);
+        const result = await executeProgram(filePath, args);
         try {
             fs.unlinkSync(filePath)
         } catch(err) {
             console.log(err)
         }
         res.json(result);
-    } catch (e) {
+    } 
+    catch (e) {
         console.log(e);
         try {
             fs.unlinkSync(filePath);
             res.json("Error");
         } catch(err) {
             console.error(err);
-            res.json("Error");
+            res.json("Internal Error");
         }
     }
 });
