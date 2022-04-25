@@ -11,8 +11,8 @@ const App = () => {
   const [selectedOption, setSelectedOption] = useState(options[0].value);
   
   const run = async () => {
-    const res = await axios.post("http://localhost:5001/run", {content: code, language: "viz", args: selectedOption});
-    // const res = await axios.post("/run", {content: code, language: "viz"});
+    // const res = await axios.post("http://localhost:5001/run", {content: code, language: "viz", args: selectedOption});
+    const res = await axios.post("/run", {content: code, language: "viz", args: selectedOption});
     setResult(res.data);
   }
 
